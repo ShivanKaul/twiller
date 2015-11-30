@@ -1,0 +1,11 @@
+{
+  "name": "twitter-plus-email",
+  "version": "0.0.1",
+  "description": "Email tweets from user to your email.",
+  "main": "server.js",
+  "author": "Shivan Kaul",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.67.0"
+  }
+}

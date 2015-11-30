@@ -1,0 +1,7 @@
+- Add README
+- Authenticate and be able to print out user's tweets correctly in JSON
+- Use JS generators for request chaining
+- Actually read in credentials + username
+- Prettify user's tweets
+- Get set up with email
+- Set up cron job to email me
