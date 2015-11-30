@@ -4,4 +4,6 @@
 - Actually read in credentials + username
 - Prettify user's tweets
 - Get set up with email
+	- allow users to unsubscribe
 - Set up cron job to email me
+- Make web interface
