@@ -6,9 +6,9 @@ function parseDate(string) {
 
 exports.parse = function(body, callback) {
     var tweets = [];
-    for (var i = 0; i < body.length; i++) {
+    for (var i = 0; i < body.length / 2; i++) {
     	// index)-[localTimestamp]-tweet
-        tweets.push((i + 1) + ') ' + '[' + parseDate(body[i].created_at) + '] ' + body[i].text + '\n\n');
+        tweets.push('\n' + (i + 1) + ') ' + '[' + parseDate(body[i].created_at) + '] ' + body[i].text + '\n');
     }
     callback(tweets);
 }
