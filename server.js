@@ -7,7 +7,7 @@ var CronJob = require('cron').CronJob;
 
 var consumer_key = process.env.CONSUMER_KEY;
 var consumer_secret = process.env.CONSUMER_SECRET;
-var user = process.argv[2];
+var user = process.env.USER;
 
 var concat = consumer_key + ":" + consumer_secret;
 var based = new Buffer(concat).toString('base64');
@@ -47,6 +47,8 @@ function start() {
         }
     );
 }
+
+console.log("Beginning cron job...");
 
 var job = new CronJob('00 30 07 * * *', function() {
 

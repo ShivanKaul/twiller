@@ -14,11 +14,13 @@ export TWILIO_SID="<insert your sid>"
 export TWILIO_AUTH_TOKEN="<insert your auth token>"
 export TWILIO_PHONE="<insert your twilio phone>"
 export TO_PHONE="<insert your own phone number>"
+export USER="<insert Twitter user to follow>"
+
 ```
 
 
 Then run as:
 
 ```
-node server.js <Twitter handle of person you want to follow>
+node server.js
 ```

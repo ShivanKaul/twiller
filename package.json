@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "5.0.0"
+  },
   "name": "twiller",
   "version": "0.0.1",
   "description": "Text tweets from user to your phone, erryday.",
