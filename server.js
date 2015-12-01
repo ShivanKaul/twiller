@@ -1,6 +1,7 @@
 var request = require('request');
-fs = require('fs');
+var fs = require('fs');
 var parser = require('./parser');
+var sender = require('./sendSMS')
 
 
 var consumer_key = process.env.CONSUMER_KEY;
@@ -35,9 +36,7 @@ request.post({
                 }
             }, function(error, resp, body) {
                 if (!error && response.statusCode == 200) {
-                    parser.parse(JSON.parse(body), function(data) {
-                        return fs.writeFile("results.txt", data.join(''));
-                    })
+                    parser.parse(JSON.parse(body), sender.send);
                 }
             })
         } else {
