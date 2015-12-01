@@ -55,7 +55,9 @@ var job = new CronJob('00 30 07 * * *', function() {
         // '*/10 * * * * *' -> every 10 seconds
 
         // '00 30 07 * * *' -> every morning @ 7: 30
-        console.log("tick!");
+
+        // Executed.
+        console.log("tick! " + new Date().toLocaleString());
 
         start();
 
