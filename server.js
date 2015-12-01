@@ -5,7 +5,6 @@ var sender = require('./sendSMS');
 
 var CronJob = require('cron').CronJob;
 
-
 var consumer_key = process.env.CONSUMER_KEY;
 var consumer_secret = process.env.CONSUMER_SECRET;
 var user = process.argv[2];
@@ -49,9 +48,11 @@ function start() {
     );
 }
 
-var job = new CronJob('*/10 * * * * *', function() {
+var job = new CronJob('00 30 07 * * *', function() {
 
         // '*/10 * * * * *' -> every 10 seconds
+
+        // '00 30 07 * * *' -> every morning @ 7: 30
         console.log("tick!");
 
         start();
