@@ -1,7 +1,7 @@
 {
-  "name": "twitter-plus-email",
+  "name": "twiller",
   "version": "0.0.1",
-  "description": "Email tweets from user to your email.",
+  "description": "Text tweets from user to your phone, erryday.",
   "main": "server.js",
   "author": "Shivan Kaul",
   "license": "MIT",
