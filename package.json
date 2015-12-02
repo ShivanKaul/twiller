@@ -1,20 +1,23 @@
 {
-  "engines": {
-    "node": "5.0.0"
-  },
-  "name": "twiller",
-  "version": "0.0.1",
-  "description": "Text tweets from user to your phone, erryday.",
-  "main": "server.js",
-  "author": "Shivan Kaul",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ShivanKaul/twiller.git"
-  },
-  "dependencies": {
-    "cron": "^1.1.0",
-    "request": "^2.67.0",
-    "twilio": "^2.5.2"
-  }
+    "engines": {
+        "node": "5.0.0"
+    },
+    "name": "twiller",
+    "version": "0.0.1",
+    "description": "Text tweets from user to your phone, erryday.",
+    "main": "js/getTweets.js",
+    "scripts": {
+        "start": "js/getTweets.js"
+    },
+    "author": "Shivan Kaul",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ShivanKaul/twiller.git"
+    },
+    "dependencies": {
+        "cron": "^1.1.0",
+        "request": "^2.67.0",
+        "twilio": "^2.5.2"
+    }
 }

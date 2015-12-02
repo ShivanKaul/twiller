@@ -2,17 +2,19 @@ var request = require('request');
 var fs = require('fs');
 var parser = require('./parser');
 var sender = require('./sendSMS');
+var config = require('./config');
 
 var CronJob = require('cron').CronJob;
 
-var consumer_key = process.env.CONSUMER_KEY;
-var consumer_secret = process.env.CONSUMER_SECRET;
-var user = process.env.USER;
+var consumer_key = config.twitter.CONSUMER_KEY;
+var consumer_secret = config.twitter.CONSUMER_SECRET;
+// Read in twitter handle
+var user = process.argv[2];
 
 var concat = consumer_key + ":" + consumer_secret;
 var based = new Buffer(concat).toString('base64');
 
-// POST and GET
+// Get oauth token and get tweets
 function start() {
     request.post({
             url: 'https://api.twitter.com/oauth2/token',
@@ -24,7 +26,10 @@ function start() {
         },
 
         function(error, response, body) {
-            if (!error && response.statusCode == 200) {
+            if (error) {
+                console.log('Error authenticating with Twitter.');
+                process.exit(1);
+            } else if (response.statusCode == 200) {
                 var token = JSON.parse(body).access_token;
 
                 // Got access token, get user's tweets
@@ -37,12 +42,21 @@ function start() {
                         'Authorization': 'Bearer ' + token
                     }
                 }, function(error, resp, body) {
-                    if (!error && response.statusCode == 200) {
+                    if (error) {
+                        console.log('Error fetching tweets.');
+                        console.log(error);
+                    } else if (response.statusCode == 200) {
                         parser.parse(JSON.parse(body), sender.send);
+                    } else {
+                        console.log('Error fetching tweets. Got response:');
+                        console.log(response.statusCode);
+                        process.exit(1);
                     }
                 })
             } else {
+                console.log('Error authenticating with Twitter. Got response:');
                 console.log(response.statusCode);
+                process.exit(1);
             }
         }
     );
@@ -50,22 +64,13 @@ function start() {
 
 console.log("Beginning cron job...");
 
-var job = new CronJob('00 30 07 * * *', function() {
-
-        // '*/10 * * * * *' -> every 10 seconds
-
-        // '00 30 07 * * *' -> every morning @ 7: 30
+var job = new CronJob(config.cron.tab, function() {
 
         // Executed.
-        console.log("tick! " + new Date().toLocaleString());
-
+        console.log("Tick! At " + new Date().toLocaleString());
         start();
-
-        /*
-         * Runs every day at 10.30 pm
-         */
 
     }, null,
     true, /* Start the job right now */
-    'America/Montreal' /* Time zone of this job. */
+    config.cron.timezone /* Time zone of this job. */
 )

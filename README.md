@@ -1,26 +1,14 @@
 # twiller
 
-Get someone's tweets texted to your phone on a daily basis. Uses Twilio and the Twitter API.
+Get someone's tweets texted to your phone on a daily basis. Uses Twilio and Twitter APIs. I personally use Heroku Scheduler to periodically run the scripts and send me the digest, but you can also set up a cron job like I have in this master branch. You can check out the other branch for info on how I used Heroku. 
 
-### Development
+### Use
 
-I use environment variables for secrets and auth tokens and whatnot. You must set your own Twitter CONSUMER_KEY and CONSUMER_SECRET (you can get them when you sign up for a Twitter developer account - I think you may have to create an application). You will also have to sign up for a Twilio account and get an Account SID and Auth Token and phone number. 
-
-
-```
-export CONSUMER_SECRET="<insert your consumer secret>"
-export CONSUMER_KEY="<insert your consumer key>"
-export TWILIO_SID="<insert your sid>"
-export TWILIO_AUTH_TOKEN="<insert your auth token>"
-export TWILIO_PHONE="<insert your twilio phone>"
-export TO_PHONE="<insert your own phone number>"
-export USER="<insert Twitter user to follow>"
-
-```
+You need to sign up for both the Twitter and Twilio APIs. From Twilio, you will get an SID, an Auth Token, and a phone number. From Twitter you will get a consumer key and a consumer secret. I setup a dummy config.js file which I use to read in these variables - please supplant them with your own. There's also a field for `TO_PHONE`, which the phone number you want the tweets to be texted to. In my case, it was my phone number.
 
 
 Then run as:
 
 ```
-node server.js
+node js/getTweets.js <Twitter handle you want to follow>
 ```
